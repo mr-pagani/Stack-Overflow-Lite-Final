@@ -53,19 +53,5 @@ def post_answer(id):
 			questions.append(new_answer)
 			return jsonify(new_answer)
 		return ("Question with id not found")
-	# for question in questions:
-	# 	if(id == question["id"]):
-	# 		question["name"] = ["name"]
-	# 		question["answer"] = ["answer"]
-	#
-	# question = {
-	# 	"id": id,
-	# 	"name": "name",
-	# 	"answer": "answer"
-	#
-	# }
-	#
-	# questions.append(question)
-	# return jsonify(question)
-
+	
 app.run(debug=True)
