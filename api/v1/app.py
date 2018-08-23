@@ -18,7 +18,7 @@ questions = [
 
 @app.route('/questions/', methods=['GET'])
 def returnall():
-    return jsonify({'questions' : questions})
+    return jsonify({'questions' : questions}), 200
 
 @app.route('/questions', methods=['POST'])
 def post_question():
@@ -29,7 +29,7 @@ def post_question():
 		"answer":request_data["answer"]
 			}
 	questions.append(new_question)
-	return jsonify(new_question)
+	return jsonify(new_question), 201
 
 
 @app.route('/questions/<int:id>', methods=['GET'])
@@ -37,10 +37,10 @@ def get_unique_question(id):
 	for question in questions:
 		if question ["id"] == id:
 			return jsonify(question)
-		return ("Question not found")
+		return ("Question not found"), 404
 
 
-@app.route('/questions/<int:id>/answers', methods=['PUT'])
+@app.route('/questions/<int:id>/answers', methods=['POST'])
 def post_answer(id):
 	for question in questions:
 		if question ["id"] == id:
@@ -51,7 +51,7 @@ def post_answer(id):
 				"answer":request_data["answer"]
 					}
 			questions.append(new_answer)
-			return jsonify(new_answer)
-		return ("Question with id not found")
-	
+			return jsonify(new_answer), 201
+		return ("Question with id not found"), 404
+
 app.run(debug=True)
